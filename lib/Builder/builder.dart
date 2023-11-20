@@ -20,9 +20,10 @@ class ViewData extends StatefulWidget {
 }
 
 class _ViewDataState extends State<ViewData> {
+      int value = 1;//put it outside. otherwise it will rebuild.
+
   @override
   Widget build(BuildContext context) {
-    int value = 1;
 
     int selectedIndex = 0;
 
@@ -41,8 +42,8 @@ class _ViewDataState extends State<ViewData> {
     void _onToggle(int selectedValue) {
       setState(() {
         value = selectedValue;
-        print("Valye$value");
-        print("Index$selectedValue");
+        print("Valye$value--");
+        print("Index$selectedValue--");
       });
     }
 
@@ -90,6 +91,9 @@ class _ViewDataState extends State<ViewData> {
                         ),
                       ],
                     ),
+                    onTap: (props) {
+                      print('bilal is gay');
+                    },
                     styleBuilder: (i) =>
                         ToggleStyle(indicatorColor: colorBuilder(i)),
                     onChanged: _onToggle,
@@ -230,10 +234,8 @@ class _ViewDataState extends State<ViewData> {
                 // color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
               ),
               label: "home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.newspaper), label: "News"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: "Prof"),
+          BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: "News"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Prof"),
         ],
         currentIndex: selectedIndex,
         // selectedItemColor: Colors.black,
@@ -269,12 +271,16 @@ class _GridViewWidgetState extends State<GridViewWidget> {
               mainAxisSpacing: 12,
               childAspectRatio: 1.12),
           itemBuilder: (BuildContext context, index) {
+            int colorCode = Random().nextInt(60);
             debugPrint(
-                "Item $index width: ${MediaQuery.of(context).size.width}");
+                "Debug > Item $index width: ${MediaQuery.of(context).size.width}");
             Color randomColor = Color.fromRGBO(
-              Random().nextInt(256),
-              Random().nextInt(256),
-              Random().nextInt(256),
+              // Random().nextInt(60),
+              // Random().nextInt(60),
+              // Random().nextInt(60),
+              colorCode,
+              colorCode,
+              colorCode,
               1.0,
             );
             return Container(
@@ -372,7 +378,6 @@ class _CardShowState extends State<CardShow> {
                           radius: 30,
                           backgroundColor: Colors.amber,
                           child: ClipOval(
-                            
                             child: Image.network(
                                 // processedImageUrls[index],
                                 "$url${widget.listOfSoccerLeagues?[index].icon}",
