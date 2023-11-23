@@ -60,7 +60,7 @@ class _ViewDataState extends State<ViewData> {
           bottom: Radius.circular(30)
         )),
         // automaticallyImplyLeading: false,
-        bottom: PreferredSize(
+        bottom: PreferredSize( 
             preferredSize: const Size(200, 130),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
