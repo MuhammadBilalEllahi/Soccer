@@ -38,10 +38,14 @@ dependencies:
   http: ^1.1.0
   google_fonts: ^6.1.0
   animated_toggle_switch: ^0.8.0
+  # cloud_firestore: ^4.13.1
+  # firebase_auth: ^4.14.0
+  # firebase_core: ^2.22.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

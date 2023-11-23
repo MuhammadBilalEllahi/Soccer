@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:assignment/Model/model.dart';
+import 'package:assignment/Pages/home.dart';
 import 'package:assignment/Pages/news.dart';
 import 'package:assignment/Pages/prof.dart';
 import 'package:flutter/material.dart';
@@ -20,15 +21,11 @@ class ViewData extends StatefulWidget {
 }
 
 class _ViewDataState extends State<ViewData> {
-      int value = 1;//put it outside. otherwise it will rebuild.
-
-  @override
-  Widget build(BuildContext context) {
-
+    int value = 1;//put it outside. otherwise it will rebuild.
     int selectedIndex = 0;
 
     final List<Widget> pages = [
-      const ViewData(),
+      const HomePage(),
       const NewsPage(),
       const ProfilePage()
     ];
@@ -38,6 +35,14 @@ class _ViewDataState extends State<ViewData> {
         selectedIndex = index;
       });
     }
+
+  @override
+  Widget build(BuildContext context) {
+
+
+   
+
+    
 
     void _onToggle(int selectedValue) {
       setState(() {
@@ -51,10 +56,12 @@ class _ViewDataState extends State<ViewData> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
 
       appBar: AppBar(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(30)
+        )),
         // automaticallyImplyLeading: false,
         bottom: PreferredSize(
-            preferredSize: const Size(200, 150),
+            preferredSize: const Size(200, 130),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,7 +99,7 @@ class _ViewDataState extends State<ViewData> {
                       ],
                     ),
                     onTap: (props) {
-                      print('bilal is gay');
+                      print('');
                     },
                     styleBuilder: (i) =>
                         ToggleStyle(indicatorColor: colorBuilder(i)),
@@ -140,91 +147,91 @@ class _ViewDataState extends State<ViewData> {
         ),
       ),
 
-      // body: pages[selectedIndex],
+      body: pages[selectedIndex],
 
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: FutureBuilder<List<SoccerLeagues>>(
-                future: futuredata(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else if (snapshot.hasError) {
-                    print(snapshot.error);
-                    return Center(
-                      child: Text("${snapshot.error}"),
-                    );
-                  }
-                  if (!snapshot.hasData) {
-                    print("No Data");
-                    return const Center(
-                      child: Text("No Data"),
-                    );
-                  } else {
-                    List<SoccerLeagues>? listOfSoccerLeagues = snapshot.data;
+      // body: Column(
+      //   // mainAxisAlignment: MainAxisAlignment.start,
+      //   crossAxisAlignment: CrossAxisAlignment.start,
+      //   children: [
+      //     Expanded(
+      //       child: FutureBuilder<List<SoccerLeagues>>(
+      //           future: futuredata(),
+      //           builder: (context, snapshot) {
+      //             if (snapshot.connectionState == ConnectionState.waiting) {
+      //               return const Center(
+      //                 child: CircularProgressIndicator(),
+      //               );
+      //             } else if (snapshot.hasError) {
+      //               print(snapshot.error);
+      //               return Center(
+      //                 child: Text("${snapshot.error}"),
+      //               );
+      //             }
+      //             if (!snapshot.hasData) {
+      //               print("No Data");
+      //               return const Center(
+      //                 child: Text("No Data"),
+      //               );
+      //             } else {
+      //               List<SoccerLeagues>? listOfSoccerLeagues = snapshot.data;
 
-                    return GridViewWidget(
-                        listOfSoccerLeagues: listOfSoccerLeagues);
-                  }
-                }),
-            // child: GridViewWidget(),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "SUGGESTED",
-                  style: GoogleFonts.aDLaMDisplay(
-                    color: Colors.lightGreenAccent,
-                  ),
-                ),
-                //  const GridPaper(child: Text(""),),
+      //               return GridViewWidget(
+      //                   listOfSoccerLeagues: listOfSoccerLeagues);
+      //             }
+      //           }),
+      //       // child: GridViewWidget(),
+      //     ),
+      //     Padding(
+      //       padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+      //       child: Row(
+      //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //         children: [
+      //           Text(
+      //             "SUGGESTED",
+      //             style: GoogleFonts.aDLaMDisplay(
+      //               color: Colors.lightGreenAccent,
+      //             ),
+      //           ),
+      //           //  const GridPaper(child: Text(""),),
 
-                Text(
-                  "Don't Show again",
-                  style: TextStyle(color: Colors.grey.shade200, fontSize: 14),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: FutureBuilder<List<SoccerLeagues>>(
-                  future: futuredata(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (snapshot.hasError) {
-                      print(snapshot.error);
-                      return Center(
-                        child: Text("${snapshot.error}"),
-                      );
-                    }
-                    if (!snapshot.hasData) {
-                      print("No Data");
-                      return const Center(
-                        child: Text("No Data"),
-                      );
-                    } else {
-                      List<SoccerLeagues>? listOfSoccerLeagues = snapshot.data;
+      //           Text(
+      //             "Don't Show again",
+      //             style: TextStyle(color: Colors.grey.shade200, fontSize: 14),
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //     Expanded(
+      //       child: Padding(
+      //         padding: const EdgeInsets.only(top: 10),
+      //         child: FutureBuilder<List<SoccerLeagues>>(
+      //             future: futuredata(),
+      //             builder: (context, snapshot) {
+      //               if (snapshot.connectionState == ConnectionState.waiting) {
+      //                 return const Center(
+      //                   child: CircularProgressIndicator(),
+      //                 );
+      //               } else if (snapshot.hasError) {
+      //                 print(snapshot.error);
+      //                 return Center(
+      //                   child: Text("${snapshot.error}"),
+      //                 );
+      //               }
+      //               if (!snapshot.hasData) {
+      //                 print("No Data");
+      //                 return const Center(
+      //                   child: Text("No Data"),
+      //                 );
+      //               } else {
+      //                 List<SoccerLeagues>? listOfSoccerLeagues = snapshot.data;
 
-                      return CardShow(listOfSoccerLeagues: listOfSoccerLeagues);
-                    }
-                  }),
-            ),
-          ),
-        ],
-      ),
+      //                 return CardShow(listOfSoccerLeagues: listOfSoccerLeagues);
+      //               }
+      //             }),
+      //       ),
+      //     ),
+      //   ],
+      // ),
 
       bottomNavigationBar: BottomNavigationBar(
         items: const [
@@ -321,6 +328,9 @@ class _GridViewWidgetState extends State<GridViewWidget> {
     );
   }
 }
+//leagues
+//teams
+//game
 
 // ignore: must_be_immutable
 class CardShow extends StatefulWidget {
